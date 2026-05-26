@@ -20,12 +20,15 @@
   // Build specific time slots
   function buildAllSlots() {
     return [
+      { label: '8:00 AM',  hour: 8,  minute: 0 },
+      { label: '9:00 AM',  hour: 9,  minute: 0 },
       { label: '10:00 AM', hour: 10, minute: 0 },
-      { label: '11:15 AM', hour: 11, minute: 15 },
-      { label: '12:30 PM', hour: 12, minute: 30 },
-      { label: '2:15 PM',  hour: 14, minute: 15 },
-      { label: '3:30 PM',  hour: 15, minute: 30 },
-      { label: '4:45 PM',  hour: 16, minute: 45 },
+      { label: '11:00 AM', hour: 11, minute: 0 },
+      { label: '12:00 PM', hour: 12, minute: 0 },
+      { label: '1:00 PM',  hour: 13, minute: 0 },
+      { label: '2:00 PM',  hour: 14, minute: 0 },
+      { label: '3:00 PM',  hour: 15, minute: 0 },
+      { label: '4:00 PM',  hour: 16, minute: 0 },
     ];
   }
   let ALL_SLOTS = buildAllSlots();
@@ -122,7 +125,7 @@
 
     const cells = [];
     const cursor = new Date(today);
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 14; i++) {
       cells.push(new Date(cursor));
       cursor.setDate(cursor.getDate() + 1);
     }
@@ -164,8 +167,8 @@
       });
     }
 
-    // Morning block (9 AM - 11 AM)
-    const morning = ALL_SLOTS.filter(s => s.hour >= 9 && s.hour <= 11);
+    // Morning block (8 AM - 11 AM)
+    const morning = ALL_SLOTS.filter(s => s.hour >= 8 && s.hour <= 11);
     const morningAvail = filterPast(morning);
     morningGrid.innerHTML = "";
     if (morningAvail.length > 0) {
